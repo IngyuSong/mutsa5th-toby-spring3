@@ -1,4 +1,4 @@
-package com.example.tobyspring3.db.dao;
+package com.example.tobyspring3.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,17 +7,18 @@ import java.util.Map;
 
 import static java.lang.System.getenv;
 
-public class NUserDao extends UserDao{
+public class DConnectionMaker implements ConnectionMaker {
     @Override
-    public Connection getConnection() throws ClassNotFoundException, SQLException {
+    public Connection makeConnection() throws SQLException, ClassNotFoundException {
         Map<String, String> env = getenv();
         String dbHost = env.get("DB_HOST");
         String dbUser = env.get("DB_USER");
         String dbPassword = env.get("DB_PASSWORD");
-
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn = DriverManager.getConnection(
-                dbHost, dbUser, dbPassword
+                dbHost,
+                dbUser,
+                dbPassword
         );
         return conn;
     }

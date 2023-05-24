@@ -1,4 +1,4 @@
-package com.example.tobyspring3.db.dao;
+package com.example.tobyspring3.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
